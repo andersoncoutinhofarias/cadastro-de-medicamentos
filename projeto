@@ -1,10 +1,40 @@
+remedios=[]
+
 def Menu():
     print("*** Menu ***")
     print("[1] Cadastrar remedio")
     print("[2] Listar remedios cadastrados")
-    print("[3] Calcula precos")
-    print("[4] Consulta estoque")
-    print("[5] Calcula desconto")
-    print("[6] Data de vencimento")
-    print("[7] Remover produtos vencidos")
-    print("[8] Sair ")
+    print("[3] Data de vencimento")
+    print("[4] Remover produtos vencidos")
+    print("[5] Quantidade estoque")
+    print("[6] Sair ")
+    
+
+    opcao= input('Digite a opçao desejada: ') 
+    return opcao
+def cadastraRemedio():
+    
+    entrada="S"
+    while entrada =="S":
+    
+        listaRemedios=[]
+        codigo=int(input(" digite o codigo de barra:"))
+        remedio=str.upper(input("Digite o nome do remedio para cadatramento:"))
+        quant=int(input("digite a quntidade disponivel:"))
+        datavencimento=input("digite a data de vecimento do remedio:")
+        listaRemedios.append(codigo)
+        listaRemedios.append(remedio)
+        listaRemedios.append(quant)
+        listaRemedios.append(datavencimento)
+        remedios.append(listaRemedios)
+        entrada=str.upper(input("continuar?[S/N]"))
+
+
+
+def listarRemediosCadastrados ():
+    print("Remedios cadastrados", remedios)
+    
+
+
+def remedioVencidos():
+#em andamento aguarde
