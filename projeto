@@ -34,7 +34,7 @@ def cadastraRemedio():
 
 
 def verificar():
-    remedio = str(input("Digite o codigo do remédio:"))
+    remedio = str(input("Digite o nome do remédio:"))
     if remedio in remedios:
         print('Remedios já Cadastrados',remedios)
     pass
