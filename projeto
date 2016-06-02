@@ -33,7 +33,14 @@ def cadastraRemedio():
         entrada=str.upper(input("continuar?[S/N]"))
 
 
-
+def sel_por_nome(remedios):
+    letraRemedio = input("Digite a letra do remédio: ")
+    resultado = []
+    for rem in remedios:
+        if (rem[1][0] == letraRemedio):
+            resultado.append(rem)
+            return resultado
+            
 def adicionarCodigo ():
     remedio = str(input("Digite o codigo do remédio:"))
     if remedio in remedios:
