@@ -1,4 +1,3 @@
-
 remedios=[]
 
 opcao=0
@@ -85,31 +84,25 @@ def remedioVencidos():
 
     
 def removerRemedioVencidos ():
-    dataatuais=input("digite data atual:")
-    
-    diaAtual= dataatuais[0:2]
-    mesAtual=dataatuais[3:5]
-    
-   
-    diaC=int(diaAtual)
-    
-    mesC=int(mesAtual)
-            
+    dataatuais=input("digite data atual[mes/ano]:")
+    mesAtual= dataatuais[0:2]#mes
+    anoAtual=dataatuais[3:7]#ano
+    mesC=int(diaAtual) 
+    anoC=int(mesAtual)
+    encontrados = []
     for i in range (len(remedios)):
-        
-        x=int(remedios[i][3][0:2])#dia lista
-
-        y=int(remedios[i][3][3:5])#mes lista
-        
-        dia=int(x)
-
-        mes=int(y)
-
-        if(dia>diaC and mes > mesC):
-            print("remedio removido",remedios.pop(i))
+        x=int(remedios[i][3][0:2])#mes lista
+        y=int(remedios[i][3][3:7])#ano lista
+        if(y<anoC):
+            encontrados.append(remedios[i])
+        elif (y==anoC) and (x<mesC):
+            encontrados.append(remedios[i])
+    if(len(encontrados) > 0):
+        for x in encontrados:
+            remedios.remove(x)
+         
     else:
-
-       print("nao tem remedio vencido")
+        print("nenhum remedio vencido encontrado")
 
   
 
