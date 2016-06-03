@@ -6,7 +6,7 @@ def Menu():
     print("*** Menu ***")
     print("[1] Cadastrar remedio")
     print("[2] selecionar por nome")
-    print("[3] Verificar se está cadastrado por código"")
+    print("[3] Verificar se está cadastrado por código")
     print("[4] Listar Remedios Cadastrados")
     print("[5] Remedios vencidos")
     print("[6] Remover remedios vencidos")
