@@ -5,31 +5,35 @@ opcao=0
 def Menu():
     print("*** Menu ***")
     print("[1] Cadastrar remedio")
-    print("[2] Listar remedios cadastrados")
-    print("[3] Quantidade estoque")
-    print("[4] Data de vencimento")
-    print("[5] Remover produtos vencidos")
-    print("[6] Sair ")
+    print("[2] selecionar por nome")
+    print("[3] Verificar se está cadastrado por código"")
+    print("[4] Listar Remedios Cadastrados")
+    print("[5] Remedios vencidos")
+    print("[6] Remover remedios vencidos")
+    print("[7] Quantidade total de remedios cadastrdo")
+    print("[8] sair ")
     
 
-    opcao= input('Digite a opçao desejada: ') 
+    opcao= input('Digite a opÃ§ao desejada: ') 
     return opcao
 def cadastraRemedio():
+
     
     entrada="S"
     while entrada =="S":
     
         listaRemedios=[]
-        codigo=int(input(" digite o codigo de barra:"))
-        remedio=str.upper(input("Digite o nome do remedio para cadatramento:"))
+        codigo=int(input("digite o codigo de barra:"))
+        remedio=input("Digite o nome do remedio para cadatramento:").upper()
         quant=int(input("digite a quntidade disponivel:"))
-        datavencimento=str(input("digite a data de vecimento do remedio:"))
+        datavencimento=str(input("digite a data de vecimento do remedio [mes/ano]:"))
         listaRemedios.append(codigo)
         listaRemedios.append(remedio)
         listaRemedios.append(quant)
         listaRemedios.append(datavencimento)
         remedios.append(listaRemedios)
         entrada=str.upper(input("continuar?[S/N]"))
+
 
 
 def sel_por_nome(remedios):
@@ -39,50 +43,42 @@ def sel_por_nome(remedios):
         if (rem[1][0] == letraRemedio):
             resultado.append(rem)
             return resultado
-            
-def adicionarCodigo ():
-    remedio = str(input("Digite o codigo do remédio:"))
-    if remedio in remedios:
-        print('Remedios já Cadastrados',remedios)
-    pass
+
+def adicionarCodigo(remedios):
+    codigo = int(input("Digite o codigo do remedio:"))
+    achou= False
+    for  rem in remedios:
+        if codigo == rem[0]:
+            print('Remedios ja¡ Cadastrados')
+            achou=True
+    if(achou == False):
+        print('Remedio ainda nao cadastrado')
         
 def listarRemediosCadastrados ():
     print("Remedios cadastrados", remedios)
     
 
 
-def remedioVencidos():
-    dataatuais=input("digite data atual:")
-    
-    diaAtual= dataatuais[0:2]
-    mesAtual=dataatuais[3:5]
-    
-   
-    diaC=int(diaAtual)
-    
+def Remediovencidos():
+    dataatuais=input("digite data atual[mes/ano]:")
+    mesAtual= dataatuais[0:2]#mes
+    anoAtual=dataatuais[3:7]#ano
     mesC=int(mesAtual)
-            
+    anoC=int(anoAtual)
+    achou = False
     for i in range (len(remedios)):
-        
-        x=int(remedios[i][3][0:2])#dia lista
-
-        y=int(remedios[i][3][3:5])#mes lista
-        
-        dia=int(x)
-
-        mes=int(y)
-
-        if(dia>diaC and mes > mesC):
+        x=int(remedios[i][3][0:2])#mes lista
+        y=int(remedios[i][3][3:7])#ano lista
+        if(y<anoC):
             print(remedios[i])
-
-        elif (diaC<dia ):
-           
-            if(mesC>mes):
-               
-                print(remedios[i])
+            achou = True
+        elif (y<=anoC) and (x<=mesC):
+            print(remedios[i])
+            achou = True
         
-
-    
+    if(achou == False):
+        print("nenhum remedio vencido encontrado")
+               
 def removerRemedioVencidos ():
     dataatuais=input("digite data atual[mes/ano]:")
     mesAtual= dataatuais[0:2]#mes
@@ -95,14 +91,14 @@ def removerRemedioVencidos ():
         y=int(remedios[i][3][3:7])#ano lista
         if(y<anoC):
             encontrados.append(remedios[i])
-        elif (y==anoC) and (x<mesC):
+        elif (y<=anoC) and (x<=mesC):
             encontrados.append(remedios[i])
     if(len(encontrados) > 0):
         for x in encontrados:
             remedios.remove(x)
          
     else:
-        print("nenhum remedio vencido encontrado")
+        print("nenhum remedio vencido encontrado para ser removido")
 
   
 
