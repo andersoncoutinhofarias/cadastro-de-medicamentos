@@ -9,7 +9,7 @@ def Menu():
     print("[3] Verificar se está cadastrado por código")
     print("[4] Listar Remedios Cadastrados")
     print("[5] Remedios vencidos")
-    print("[6] Remover remedios vencidos")
+    print("[6] Remover produtos vencidos")
     print("[7] Quantidade total de remedios cadastrdo")
     print("[8] sair ")
     
@@ -81,11 +81,12 @@ def Remediovencidos():
                
 def removerRemedioVencidos ():
     dataatuais=input("digite data atual[mes/ano]:")
-    mesAtual= dataatuais[0:2]#mes
-    anoAtual=dataatuais[3:7]#ano
+    diaAtual= dataatuais[0:2]#mes
+    mesAtual=dataatuais[3:7]#ano
     mesC=int(diaAtual) 
     anoC=int(mesAtual)
     encontrados = []
+    achou = False
     for i in range (len(remedios)):
         x=int(remedios[i][3][0:2])#mes lista
         y=int(remedios[i][3][3:7])#ano lista
@@ -96,10 +97,15 @@ def removerRemedioVencidos ():
     if(len(encontrados) > 0):
         for x in encontrados:
             remedios.remove(x)
-         
-    else:
-        print("nenhum remedio vencido encontrado para ser removido")
+            print("remedios removidos",encontrados)
+            achou = True
+    elif(achou == False):
+        print("nenhum remedio vencido encontrado,para ser removido")
 
-  
-
-    
+def quanttotal_cadastrado():
+    total=0
+    for i in remedios:
+        quant=int([i][2])
+        quanttotal=total+quant
+        print("a quantidade total de remedis cadastrado é",quanttotal)
+        
