@@ -105,5 +105,3 @@ def removerRemedioVencidos ():
             achou = True
     elif(achou == False):
         print("nenhum remedio vencido encontrado,para ser removido")
-
-
