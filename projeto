@@ -1,5 +1,5 @@
 remedios=[]
-
+totalEstoque=[]
 opcao=0
 
 def Menu():
@@ -10,7 +10,7 @@ def Menu():
     print("[4] Listar Remedios Cadastrados")
     print("[5] Remedios vencidos")
     print("[6] Remover produtos vencidos")
-    print("[7] Quantidade total de remedios cadastrdo")
+    print("[7] Listar total estoque")
     print("[8] sair ")
     
 
@@ -31,6 +31,7 @@ def cadastraRemedio():
         listaRemedios.append(remedio)
         listaRemedios.append(quant)
         listaRemedios.append(datavencimento)
+        totalEstoque.append(quant)
         remedios.append(listaRemedios)
         entrada=str.upper(input("continuar?[S/N]"))
 
@@ -56,7 +57,10 @@ def adicionarCodigo(remedios):
         
 def listarRemediosCadastrados ():
     print("Remedios cadastrados", remedios)
-    
+ 
+def listarTotalEstoque ():
+    print("quantidade total de remedios no estoque até o momento:",sum(totalEstoque))
+       
 
 
 def Remediovencidos():
@@ -102,10 +106,4 @@ def removerRemedioVencidos ():
     elif(achou == False):
         print("nenhum remedio vencido encontrado,para ser removido")
 
-def quanttotal_cadastrado():
-    total=0
-    for i in remedios:
-        quant=int([i][2])
-        quanttotal=total+quant
-        print("a quantidade total de remedis cadastrado é",quanttotal)
-        
+
