@@ -16,9 +16,8 @@ def Menu():
 
     opcao= input('Digite a opÃ§ao desejada: ') 
     return opcao
-def cadastraRemedio():
-
-    
+def cadastraRemedio(opcao):
+opção(if=="1"):
     entrada="S"
     while entrada =="S":
     
