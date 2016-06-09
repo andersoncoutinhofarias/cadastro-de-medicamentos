@@ -33,11 +33,11 @@ def Menu():
     print("|____________________________________|")
     print("")
     print("")
-    print("#--------------------------#")
-    print("#Digite uma opção desejada?#")
-    print("#--------------------------#")
+    print("______________________________________")
+    print("|Digite uma opção desejada?          |")
+    print("|____________________________________|")
 
-    opcao= input('Digite a opcão desejada: ') 
+    opcao= input(' opcão desejada: ') 
     return opcao
 def cadastraRemedio(remedios):
     entrada="S"
