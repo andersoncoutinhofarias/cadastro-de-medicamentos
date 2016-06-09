@@ -31,9 +31,13 @@ def Menu():
     print("|____________________________________|")
     print("|[8] Sair                            |")
     print("|____________________________________|")
+    print("")
+    print("")
+    print("#--------------------------#")
+    print("#Digite uma opção desejada?#")
+    print("#--------------------------#")
 
-
-    opcao= input('Digite a opÃƒÂ§ao desejada: ') 
+    opcao= input('Digite a opcão desejada: ') 
     return opcao
 def cadastraRemedio(remedios):
     entrada="S"
