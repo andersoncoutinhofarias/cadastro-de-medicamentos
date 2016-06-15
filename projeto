@@ -125,3 +125,34 @@ def removerRemedioVencidos (remedios):
         print("nenhum remedio vencido encontrado")
     
     
+    import trabalho as tr
+
+remedios=[]
+totalEstoque=[]
+opcao=0 
+while opcao != '8':
+    opcao= tr.Menu()
+    if opcao == '1':
+        tr.cadastraRemedio(remedios)     
+    elif opcao == '2':
+        sel = tr.sel_por_nome(remedios)
+        print ( sel)
+       
+    elif opcao == '3':
+        tr.adicionarCodigo(remedios)
+        
+    elif opcao == '4':  
+        tr.listarRemediosCadastrados (remedios)
+        
+    elif opcao == '5':
+        tr.listarTotalEstoque(remedios)
+        
+    elif opcao == '6':
+        tr.Remediovencidos(remedios)
+        
+    elif opcao == '7':
+        tr.removerRemedioVencidos (remedios)
+
+    elif opcao == "8":
+        print("Fim do programa")
+
