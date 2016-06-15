@@ -1,3 +1,26 @@
+def Menu():
+    print("______________________________________")
+    print("|         *** Menu ***               |")
+    print("|____________________________________|")
+    print("|[1] Cadastrar remedio               |")
+    print("|____________________________________|")
+    print("|[2] Selecionar remedios por nome    |")
+    print("|____________________________________|")
+    print("|[3] Listar Remedios cadastrados     |")
+    print("|____________________________________|")
+    print("|[4] lista total estoque             |")
+    print("|____________________________________|")
+    print("|[5] Remedios vencidos               |")
+    print("|____________________________________|")
+    print("|[6] Remover produtos vencidos       |")
+    print("|____________________________________|")
+    print("|[7] Sair                            |")
+    print("|____________________________________|")
+    print("")
+    print("")
+    print("______________________________________")
+    print("|Digite uma opção desejada?          |")
+    print("|------------------------------------|")
 def cadastraRemedio():
     entrada="S"
     while entrada =="S":
@@ -115,5 +138,41 @@ def removerRemedioVencidos():
         arquivo = open("cadastro.txt","w")
         arquivo.writelines(remedios)
         arquivo.close()
+        
+        
+        
+        arquivo = open("cadastro.txt","a")
+arquivo.close()
+
+import trabalho as tr
+
+totalEstoque=[]
+opcao= 0 
+while opcao != '7':
+    opcao= tr.Menu()
+    
+    if opcao == '1':
+        tr.cadastraRemedio()     
+    elif opcao == '2':
+        sel = tr.sel_por_nome()
+        print ( sel)
+       
+    elif opcao == '3':  
+        tr.listarRemediosCadastrados ()
+        
+    elif opcao == '4':
+        tr.listarTotalEstoque()
+        
+    elif opcao == '5':
+        tr.Remediovencidos()
+        
+    elif opcao == '6':
+        tr.removerRemedioVencidos()
+        
+
+    elif opcao =='7':
+        print("Fim do programa")
+
+    
         
     
