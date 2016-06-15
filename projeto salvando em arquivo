@@ -1,0 +1,119 @@
+def cadastraRemedio():
+    entrada="S"
+    while entrada =="S":
+        codigo=input("digite o codigo de barra:")
+        while(verificarCodigo(codigo)):
+            print("já cadastrado")
+            codigo=input("digite outro codigo de barra:")
+        remedio=input("Digite o nome do remedio para cadatramento:")
+        quant=int(input("digite a quntidade disponivel:"))
+        datavencimento=input("digite a data de vecimento do remedio [mes/ano]:")
+        arquivo = open("cadastro.txt","a")
+        arquivo.write(codigo+ "\n")
+        arquivo.write(remedio+"\n")
+        arquivo.write(str(quant)+"\n")
+        arquivo.write(datavencimento+"\n")
+        arquivo.close()
+        entrada=str.upper(input("continuar?[S/N]"))
+            
+
+
+
+def sel_por_nome():
+    arquivo = open ("cadastro.txt","r")
+    remedios = arquivo.readlines()
+    arquivo.close()
+    letraRemedio = input("Digite a letra do remÃ©dio: ")
+    resultado = []
+    for rem in range(1,len(remedios),4):
+        if (remedios[rem][0] == letraRemedio):
+            resultado.append(remedios[rem][:len(remedios[rem])-1])
+    return resultado
+
+def verificarCodigo(codigo):
+    arquivo = open("cadastro.txt","r")
+    remedios = arquivo.readlines()
+    arquivo.close()
+    achou= False
+    if(len(remedios) != 0):
+        for rem in range(0,len(remedios),4):
+            if codigo == remedios[rem][:len(remedios[rem])-1]:
+               achou = True
+    return achou
+        
+def listarRemediosCadastrados ():
+    arquivo = open("cadastro.txt","r")
+    remedios = arquivo.readlines()
+    arquivo.close()
+    for i in range(0,len(remedios),4):
+        print(remedios[i][:len(remedios[i])-1]," ",remedios[i+1][:len(remedios[i+1])-1]," ",remedios[i+2][:len(remedios[i+2])-1]," ",remedios[i+3][:len(remedios[i+3])-1])
+
+def listarTotalEstoque():
+    arquivo = open("cadastro.txt","r")
+    remedios = arquivo.readlines()
+    arquivo.close()
+    total = 0
+    for i in range(2,len(remedios),4):
+        total += int(remedios[i][:len(remedios[i])-1])
+    print("O total do estoque é: ",total)
+    
+
+
+def Remediovencidos():
+    arquivo = open("cadastro.txt","r")
+    remedios = arquivo.readlines()
+    arquivo.close()
+    dataatuais=input("digite data atual[mes/ano]:")
+    mesAtual= dataatuais[0:2]#mes
+    anoAtual=dataatuais[3:7]#ano
+    mesC=int(mesAtual)
+    anoC=int(anoAtual)
+    achou = False
+    for i in range (3,len(remedios),4):
+        x=int(remedios[i][0:2])#mes lista
+        y=int(remedios[i][3:7])#ano lista
+        if(y<anoC):
+            print(remedios[i-3][:len(remedios[i-3])-1]," ",remedios[i-2][:len(remedios[i-2])-1]," ",remedios[i-1][:len(remedios[i-1])-1]," ",remedios[i][:len(remedios[i])-1])
+            achou = True
+        elif (y<=anoC) and (x<=mesC):
+            print(remedios[i-3][:len(remedios[i-3])-1]," ",remedios[i-2][:len(remedios[i-2])-1]," ",remedios[i-1][:len(remedios[i-1])-1]," ",remedios[i][:len(remedios[i])-1])
+            achou = True
+        
+    if(achou == False):
+        print("nenhum remedio vencido encontrado")
+               
+def removerRemedioVencidos():
+    arquivo = open("cadastro.txt","r")
+    remedios = arquivo.readlines()
+    arquivo.close()
+    dataatuais=input("digite data atual[mes/ano]:")
+    mesAtual= dataatuais[0:2]#mes
+    anoAtual=dataatuais[3:7]#ano
+    mesC=int(mesAtual)
+    anoC=int(anoAtual)
+    achou = False
+    remover = []
+    for i in range (3,len(remedios),4):
+        x=int(remedios[i][0:2])#mes lista
+        y=int(remedios[i][3:7])#ano lista
+        if(y<anoC):
+            remover.append(i)
+            achou = True
+        elif (y<=anoC) and (x<=mesC):
+            remover.append(i)
+            achou = True
+        
+    if(achou == False):
+        print("nenhum remedio vencido encontrado")
+    else:
+        print("Remedios vencidos excluidos")
+        for x in range(len(remover)):
+            del remedios[remover[x]]
+            del remedios[remover[x]-1]
+            del remedios[remover[x]-2]
+            del remedios[remover[x]-3]
+        arquivo = open("cadastro.txt","w")
+        arquivo.writelines(remedios)
+        arquivo.close()
+        
+    
